@@ -4,13 +4,16 @@ import {
   selectContacts,
   selectError,
   selectIsLoading,
-} from '../../redux/selectors';
-import { fetchContacts } from '../../redux/operations';
+} from '../../redux/contacts/selectors';
+import { fetchContacts } from '../../redux/contacts/operations';
 import { Container, Content, AppTitle, ListTitle } from './App.styled';
-import { ContactForm } from '../ContactForm/ContactForm';
-import { ContactList } from '../ContactList/ContactList';
-import { Filter } from '../Filter/Filter';
-import { Loader } from '../Loader/Loader';
+import {
+  ContactForm,
+  ContactList,
+  Filter,
+  Loader,
+  NavBar,
+} from '../../components';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -23,16 +26,19 @@ export const App = () => {
   }, [dispatch]);
 
   return (
-    <Container>
-      <Content>
-        <AppTitle>Phonebook</AppTitle>
-        <ContactForm />
-        <ListTitle>Contacts</ListTitle>
-        <Filter />
-        {isLoading && <Loader />}
-        {error && <p>{error}</p>}
-        {contacts.length > 0 && <ContactList />}
-      </Content>
-    </Container>
+    <>
+      <Container>
+        <NavBar />
+        <Content>
+          <AppTitle>Phonebook</AppTitle>
+          <ContactForm />
+          <ListTitle>Contacts</ListTitle>
+          <Filter />
+          {isLoading && <Loader />}
+          {error && <p>{error}</p>}
+          {contacts.length > 0 && <ContactList />}
+        </Content>
+      </Container>
+    </>
   );
 };

@@ -1,7 +1,6 @@
 import { Form, Label, Input } from './Filter.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { setFilter } from '../../redux/filterSlice';
-// import { selectFilter } from '../../redux/selectors';
+import { useDispatch } from 'react-redux';
+import { setFilter } from '../../redux/filter/filterSlice';
 
 export const Filter = () => {
   const dispatch = useDispatch();

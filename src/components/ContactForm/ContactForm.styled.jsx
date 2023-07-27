@@ -4,12 +4,11 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  position: fixed;
+
   top: 20%;
 `;
 export const Label = styled.label`
   display: flex;
-  margin: 0 auto;
 `;
 
 export const Input = styled.input`
@@ -23,7 +22,7 @@ export const Button = styled.button`
   text-align: center;
   align-items: center;
   justify-content: center;
-  margin: 0 auto;
+
   outline: none;
   border: none;
   color: #fff;
