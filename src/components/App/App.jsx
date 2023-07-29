@@ -47,7 +47,7 @@ export const App = () => {
             }
           />
         </Route>
-        <Route path="*" element={<Home />} />
+        {/* <Route path="*" element={<Home />} /> */}
       </Routes>
     </Wrapper>
   );
