@@ -1,14 +1,15 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ContactForm } from 'components/ContactForm/ContactForm';
-import { ContactList } from 'components/ContactList/ContactList';
-import { fetchContacts } from 'redux/contacts/operations';
-import { selectLoading } from 'redux/contacts/selectors';
-import { Loader } from '../components/Loader/Loader';
+import { ContactForm } from '../components';
+import { ContactList } from '../components';
+import { fetchContacts } from '../redux/contacts/operations';
+import { selectIsLoading } from '../redux/contacts/selectors';
+import { Loader } from '../components';
+import { Helmet } from 'react-helmet';
 
-export default function Tasks() {
+const Contacts = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectLoading);
+  const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -16,9 +17,14 @@ export default function Tasks() {
 
   return (
     <>
-      <title>Your contacts</title>
+      <Helmet>
+        {' '}
+        <title>Contacts</title>
+      </Helmet>
       <ContactForm />
       <div>{isLoading && <Loader />}</div> <ContactList />
     </>
   );
-}
+};
+
+export default Contacts;

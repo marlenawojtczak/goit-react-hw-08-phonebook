@@ -7,8 +7,6 @@ export const ContactList = () => {
   const dispatch = useDispatch();
   const filteredContacts = useSelector(selectFilteredContacts);
 
-  console.log('Wartość filteredContacts:', filteredContacts);
-
   return (
     <List>
       {filteredContacts.map(({ id, name, phone }) => (

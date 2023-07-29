@@ -1,44 +1,57 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  selectContacts,
-  selectError,
-  selectIsLoading,
-} from '../../redux/contacts/selectors';
-import { fetchContacts } from '../../redux/contacts/operations';
-import { Container, Content, AppTitle, ListTitle } from './App.styled';
-import {
-  ContactForm,
-  ContactList,
-  Filter,
-  Loader,
-  NavBar,
-} from '../../components';
+import { useEffect, lazy } from 'react';
+import { useDispatch } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
+import { SharedLayout } from '../../components';
+import { PrivateRoute } from '../PrivateRoute';
+import { RestrictedRoute } from '../RestrictedRoute';
+import { refreshUser } from '../../redux/auth/operations';
+import { useAuth } from '../../hooks/useAuth';
+import { Wrapper } from './App.styled';
+import { Suspense } from 'react';
+
+const Home = lazy(() => import('../../pages/Home'));
+const Register = lazy(() => import('../../pages/Register'));
+const Login = lazy(() => import('../../pages/Login'));
+const Contacts = lazy(() => import('../../pages/Contacts'));
 
 export const App = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(selectContacts);
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
+  const { isRefreshing } = useAuth();
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(refreshUser());
   }, [dispatch]);
 
   return (
-    <>
-      <Container>
-        <NavBar />
-        <Content>
-          <AppTitle>Phonebook</AppTitle>
-          <ContactForm />
-          <ListTitle>Contacts</ListTitle>
-          <Filter />
-          {isLoading && <Loader />}
-          {error && <p>{error}</p>}
-          {contacts.length > 0 && <ContactList />}
-        </Content>
-      </Container>
-    </>
-  );
-};
+        isRefreshing ? <p>Please wait, user refreshing...</p> : (
+          <Wrapper>
+            <Suspense fallback={<p>Loading...</p>}>
+          <Routes>
+            <Route path="/" element={<SharedLayout />}>
+                           <Route index element={<Home />} />
+                        <Route
+                path="/register"
+                element={
+                  <RestrictedRoute redirectTo="/login" component={<Register />} />
+                }
+              />
+                      <Route
+                path="/login"
+                element={
+                  <RestrictedRoute redirectTo="/contacts" component={<Login />} />
+                }
+              />
+                       <Route
+                path="/contacts"
+                element={
+                  <PrivateRoute redirectTo="/login" component={<Contacts />} />
+                }
+              />
+            </Route>
+           <Route path="*" element={<Home />} />
+          </Routes>
+          </Suspense>
+        </Wrapper>
+        )
+      );
+    };
