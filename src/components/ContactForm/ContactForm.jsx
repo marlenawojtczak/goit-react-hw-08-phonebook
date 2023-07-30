@@ -1,7 +1,9 @@
 import { useDispatch } from 'react-redux';
 import { addContact } from '../../redux/contacts/operations';
 import { Filter } from '../../components';
-import { Form, Label, Input, Button } from './ContactForm.styled';
+import { Form, Label } from './ContactForm.styled';
+import { TextField, Button } from '@mui/material';
+import AddIcCallOutlinedIcon from '@mui/icons-material/AddIcCallOutlined';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
@@ -27,27 +29,58 @@ export const ContactForm = () => {
     <>
       <Form onSubmit={handleSubmit}>
         <Label>
-          Name
-          <Input
+          <TextField
+            id="outlined-basic"
+            label="Name"
+            variant="outlined"
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
             first
+            style={{ width: '300px' }}
+            startIcon
+            InputLabelProps={{
+              style: {
+                fontFamily: 'system-ui, sans-serif',
+              },
+            }}
           />
         </Label>
         <Label>
-          Number
-          <Input
+          <TextField
+            id="outlined-basic"
+            label="Number"
+            variant="outlined"
             type="tel"
             name="number"
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
+            first
+            style={{ width: '300px' }}
+            InputLabelProps={{
+              style: {
+                fontFamily: 'system-ui, sans-serif',
+              },
+            }}
           />
         </Label>
-        <Button type="submit">Add contact</Button>
+        <Button
+          variant="outlined"
+          type="submit"
+          endIcon={<AddIcCallOutlinedIcon />}
+          style={{
+            width: '300px',
+            dispplay: 'block',
+            margin: '0 auto',
+            fontFamily: 'system-ui, sans-serif',
+            fontWeight: '600',
+          }}
+        >
+          Add contact
+        </Button>
       </Form>
       <Filter />
     </>

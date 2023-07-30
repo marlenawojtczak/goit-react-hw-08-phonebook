@@ -1,17 +1,13 @@
 import styled from 'styled-components';
 
 export const Form = styled.form`
-  display: flex;
-
-  width: 100%;
+  margin: 0;
+  display: grid;
+  justify-content: center;
 `;
 
 export const Label = styled.label`
-  color: grey;
   display: flex;
-  flex-direction: column;
-
-  width: 220px;
+  margin-top: 60px;
+  margin-bottom: 20px;
 `;
-
-export const Input = styled.input``;

@@ -2,10 +2,10 @@ export * from './ContactForm';
 export * from './ContactList';
 export * from './Filter';
 export * from './Loader';
-export * from './AuthNav'
-export * from './AppBar'
-export * from './SharedLayout'
-export * from './LoginForm'
-export * from './RegisterForm'
-export * from './Navigation'
-export * from './UserMenu'
+export * from './AuthNav';
+export * from './AppBar';
+export * from './SharedLayout';
+export * from './LoginForm';
+export * from './RegisterForm';
+export * from './Navigation';
+export * from './UserMenu';

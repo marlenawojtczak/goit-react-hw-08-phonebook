@@ -6,26 +6,4 @@ export const Wrapper = styled.div`
   gap: 12px;
 `;
 
-export const Text = styled.p`
-  font-weight: 700;
-  color: #212121;
-  font-size: 20px;
-`;
-
-export const Button = styled.button`
-  padding: 4px 6px;
-  font: inherit;
-  cursor: pointer;
-  border-radius: 4px 8px;
-  border: 3px solid #f08080;
-  color: #f08080;
-  font-size: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 10px 10px;
-
-  &:hover {
-    background-color: #b9bcd3;
-  }
-`;
+export const Text = styled.p``;

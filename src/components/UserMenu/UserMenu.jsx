@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from '../../redux/auth/operations';
 import { selectUser } from '../../redux/auth/selectors';
-import { Wrapper, Text, Button } from './UserMenu.styled';
+import { Wrapper, Text } from './UserMenu.styled';
+import { Button } from '@mui/material';
 
 export const UserMenu = () => {
   const user = useSelector(selectUser);
@@ -9,10 +10,20 @@ export const UserMenu = () => {
 
   return (
     <Wrapper>
-      <Text>Welcome to Phonebook {user.name} </Text>{' '}
-      <Button type="button" onClick={() => dispatch(logOut())}>
+      <Text>Welcome, {user.name}!</Text>{' '}
+      <Button
+        onClick={() => dispatch(logOut())}
+        variant="outlined"
+        type="button"
+        style={{
+          dispplay: 'block',
+          margin: '0 auto',
+          fontFamily: 'system-ui, sans-serif',
+          fontWeight: '600',
+        }}
+      >
         Logout
       </Button>{' '}
-      </Wrapper>
+    </Wrapper>
   );
 };

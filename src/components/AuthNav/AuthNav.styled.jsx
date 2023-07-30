@@ -1,17 +1,11 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 export const Wrapper = styled.div``;
 
-export const Link = styled(NavLink)`
-  display: inline-block;
-  text-decoration: none;
-  padding: 12px;
-  font-weight: 700;
-  color: #000000;
-  font-size: 20px;
-
-  &:hover {
-    color: #ffffff;
-  }
+export const StyledButton = styled(Button)`
+  display: block;
+  margin: 0 auto;
+  font-family: system-ui, sans-serif;
+  font-weight: 600;
 `;

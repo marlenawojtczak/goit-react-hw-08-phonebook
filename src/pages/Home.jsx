@@ -1,4 +1,4 @@
-import { Wrapper, Title } from './Home.styled';
+import { Wrapper, Title, Text } from './Home.styled';
 import { Helmet } from 'react-helmet';
 
 const Home = () => {
@@ -8,6 +8,7 @@ const Home = () => {
         <title>Phonebook</title>
       </Helmet>
       <Title>Welcome to Phonebook!</Title>{' '}
+      <Text>Log in or create a new account to enjoy using the application</Text>
     </Wrapper>
   );
 };
